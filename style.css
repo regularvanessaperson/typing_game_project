@@ -1,0 +1,47 @@
+html, body, .grid-container { height: 100%; margin: 0; }
+h1 , p{
+    text-align: center;
+}
+
+
+.note{
+    width: 50px;
+    height: auto;
+}
+
+
+.container {
+    display: flex;
+    margin: auto;
+    border: 1px solid red;
+    width: 700px;
+    max-height: max-content;
+}
+
+.lyrics {
+    display: inline-flex;
+    float: left;
+    height: 250px;
+    width: 50%;
+    background-color: black;
+}
+.options {
+    display: inline-flex;
+    float: right;
+    flex-direction: column;
+    width: 50%;
+    border: 1px solid green;
+    justify-content: space-between;
+}
+.load{
+    
+}
+#progress{
+    background: blueviolet;
+     height:5px;
+}
+
+.start {
+    height: 20px;
+    width: 20px;
+}
