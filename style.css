@@ -2,7 +2,10 @@ html, body, .grid-container { height: 100%; margin: 0; }
 h1 , p{
     text-align: center;
 }
+span{
+    display: inline-block;
 
+}
 
 .note{
     width: 50px;
@@ -19,11 +22,28 @@ h1 , p{
 }
 
 .lyrics {
-    display: inline-flex;
+    /* display: inline-flex; */
     float: left;
     height: 250px;
     width: 50%;
+    background-color: whitesmoke;
+    font-family: 'Paytone One', sans-serif;
+}
+.cursor {
     background-color: black;
+}
+
+span{
+    padding: 1px;
+    font-family: 'Paytone One', sans-serif;
+    color: green;
+    text-align: center;
+}
+
+#text{
+    font-family: 'Paytone One', sans-serif;
+    color: green;
+    text-align: center;
 }
 .options {
     display: inline-flex;
