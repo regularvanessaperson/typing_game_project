@@ -1,11 +1,8 @@
-html, body, .grid-container { height: 100%; margin: 0; }
+html, body { height: 100%; margin: 0; }
 h1 , p{
     text-align: center;
 }
-span{
-    display: inline-block;
 
-}
 
 .note{
     width: 50px;
@@ -27,24 +24,20 @@ span{
     height: 250px;
     width: 50%;
     background-color: whitesmoke;
-    font-family: 'Paytone One', sans-serif;
+    /* font-family: 'Paytone One', sans-serif; */
 }
 .cursor {
     background-color: black;
 }
 
-span{
-    padding: 1px;
-    font-family: 'Paytone One', sans-serif;
-    color: green;
-    text-align: center;
-}
 
-#text{
+/* #text{
+    display:flex;
+    flex-direction: column;
     font-family: 'Paytone One', sans-serif;
     color: green;
     text-align: center;
-}
+} */
 .options {
     display: inline-flex;
     float: right;
