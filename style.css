@@ -19,7 +19,6 @@ h1 , p{
 }
 
 .lyrics {
-    /* display: inline-flex; */
     float: left;
     height: 250px;
     width: 50%;
@@ -27,10 +26,14 @@ h1 , p{
     /* font-family: 'Paytone One', sans-serif; */
 }
 .cursor {
-    background-color: black;
+    
+    background-color: grey;
 }
 
+.done {
+    color: whitesmoke;
 
+}
 /* #text{
     display:flex;
     flex-direction: column;
