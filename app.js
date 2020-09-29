@@ -1,4 +1,6 @@
 
+
+document.addEventListener("DOMContentLoaded",()=>{
 //array with lyrics split up into paragraphs
 const blackParade = [
     `When I was a young boy`,`My father took me into the city`,`To see a marching band`]
@@ -8,6 +10,9 @@ let screen = document.querySelector(".lyrics")
 let cursorIndex = 0;
 let paragraphIndex = 0;
 let lyricsLength = 0;
+let width= 0;
+let id =0;
+
 
 const finish =()=> {
     if (cursorIndex===lyricsLength-1 && paragraphIndex===blackParade.length-1){
@@ -15,8 +20,26 @@ const finish =()=> {
     }
 }
 
+const progressBar =()=>{
+    const progress = document.querySelector(".timer");
+     if (width == 0){
+         width =1;
+         const frame = () => {
+            if (width>=90){
+                clearInterval(id);
+                i = 0;
+            } else {
+                width++;
+                progress.style.width = width + "%";
+                // progress.innerText = width + "%";
+            }
+         }
+         id = setInterval(frame,100);
+     }
+}
+
 const start = () =>{
-    
+    progressBar()
     //split string into span for each letter
     const lyrics = blackParade[paragraphIndex].split("").map((char)=> {
         const span = document.createElement("span");
@@ -58,14 +81,13 @@ const start = () =>{
         start()
         }
     //    document.removeEventListener("keydown", typing())
- 
-     
     }
-    
 }
-document.addEventListener("DOMContentLoaded",()=>{
+
     //start the game
-    start()
+   document.querySelector(".start").addEventListener("click", ()=>{
+    start() 
+   })
     //go to the next paragraph
     //once each index has been typed game is finished
     
