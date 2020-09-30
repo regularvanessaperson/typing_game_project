@@ -1,10 +1,10 @@
 # typing_game_project
 ## Game making basic goals
-0. Basic layout of the game planned
-    - want it to look kind of like a youtube lyric video
-1. Get text/typing to work
-2. Get each string to show after previous one is typed
-3. Get progress bar to show 
+0. Basic layout of the game planned (x)
+    - want it to look kind of like a youtube lyric video 
+1. Get text/typing to work (x)
+2. Get each string to show after previous one is typed (x)
+3. Get progress bar to show (x)
     - stop the game if player is not done typing
     - stop progress bar if player finishes before it is done
         -display a winning message (not an alert)

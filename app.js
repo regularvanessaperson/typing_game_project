@@ -14,7 +14,7 @@ let paragraphIndex = 0;
 let lyricsLength = 0;
 //width of progress bar
 let width= 0;
-//frame interfal
+//frame interval
 let id =0;
 
 
@@ -35,7 +35,7 @@ const progressBar =()=>{
             }
          }
          //if I wanted different length it would go in the id
-         id = setInterval(frame,170);
+         id = setInterval(frame,190);
          finish()
      }
 }
@@ -87,14 +87,14 @@ const start = () =>{
     }
 }
 const finish =()=> {
+    //if cursor is at the end of the paragraph and paragraph is last one in blackParade index
     if (cursorIndex===lyricsLength-1 && paragraphIndex===blackParade.length-1 && width<90){
         console.log("You rock at typing!") 
-        width = width
         screen.innerHTML = "You rock at typing!"
+        //make a restart button that works when is says restart 
         document.querySelector(".start").innerText = "restart"
-        document.querySelector()
     } else if (width>=90){
-        screen.innerHTML = "Try again?"
+        screen.innerText = "Try again?"
     }
 }
 const restart = ()=>{
