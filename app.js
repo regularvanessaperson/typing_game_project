@@ -1,6 +1,6 @@
 
 
-document.addEventListener("DOMContentLoaded",()=>{
+
 //array with lyrics split up into paragraphs
 const blackParade = [
     `When I was a young boy`,`My father took me into the city`,`To see a marching band`]
@@ -8,18 +8,18 @@ const blackParade = [
 let screen = document.querySelector(".lyrics")
 //cursor will always start at index 0
 let cursorIndex = 0;
+//index of array that is displayed 
 let paragraphIndex = 0;
+//the length of current paragraph of lyrics
 let lyricsLength = 0;
+//width of progress bar
 let width= 0;
+//frame interfal
 let id =0;
 
 
-const finish =()=> {
-    if (cursorIndex===lyricsLength-1 && paragraphIndex===blackParade.length-1){
-        console.log("You rock at typing!") 
-    }
-}
 
+//it will display on screen and be full when done
 const progressBar =()=>{
     const progress = document.querySelector(".timer");
      if (width == 0){
@@ -34,11 +34,14 @@ const progressBar =()=>{
                 // progress.innerText = width + "%";
             }
          }
-         id = setInterval(frame,100);
+         //if I wanted different length it would go in the id
+         id = setInterval(frame,170);
+         finish()
      }
 }
 
 const start = () =>{
+    document.querySelector(".start").removeEventListener("click", start)
     progressBar()
     //split string into span for each letter
     const lyrics = blackParade[paragraphIndex].split("").map((char)=> {
@@ -73,7 +76,7 @@ const start = () =>{
   //need to move the cursor to the next item in the array when done
   const nextLyric = () =>{
     if (cursorIndex===lyricsLength-1){
-       screen.innerHTML= "";
+       screen.innerText= "";
        paragraphIndex = paragraphIndex + 1
        cursorIndex = 0;
        if (paragraphIndex<blackParade.length) {    
@@ -83,12 +86,23 @@ const start = () =>{
     //    document.removeEventListener("keydown", typing())
     }
 }
+const finish =()=> {
+    if (cursorIndex===lyricsLength-1 && paragraphIndex===blackParade.length-1 && width<90){
+        console.log("You rock at typing!") 
+        width = width
+        screen.innerHTML = "You rock at typing!"
+        document.querySelector(".start").innerText = "restart"
+        document.querySelector()
+    } else if (width>=90){
+        screen.innerHTML = "Try again?"
+    }
+}
+const restart = ()=>{
 
-    //start the game
-   document.querySelector(".start").addEventListener("click", ()=>{
-    start() 
-   })
-    //go to the next paragraph
-    //once each index has been typed game is finished
+}
+
+    //start the game using the button
+document.addEventListener("DOMContentLoaded",()=>{
+    document.querySelector(".start").addEventListener("click", start)
     
 })

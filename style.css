@@ -1,7 +1,9 @@
 body { 
     height: 100%; 
     margin: 0; 
-    background-image: url("https://ak.picdn.net/shutterstock/videos/9101426/thumb/1.jpg")
+    background-image: url("https://ak.picdn.net/shutterstock/videos/9101426/thumb/1.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 h1 , p{
     margin: 0 auto;
