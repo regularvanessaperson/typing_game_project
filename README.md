@@ -16,3 +16,7 @@
     - activates with start button
 7. Have more than one song choice or make timer faster
     - maybe an easy, medium, hard
+
+### Issues I haven't solved
+- When making spans out of each character the cursor skips over them
+    and it makes the game look a bit broken while playing

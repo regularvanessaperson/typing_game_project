@@ -3,7 +3,9 @@
 
 //array with lyrics split up into paragraphs
 const blackParade = [
-    `When I was a young boy`,`My father took me into the city`,`To see a marching band`]
+    `Twinkle, twinkle, little star`,
+    `How I wonder what you are!`,
+    `Up above the world so high`]
 //calling the div with class of lyrics a screen 
 let screen = document.querySelector(".lyrics")
 //cursor will always start at index 0
