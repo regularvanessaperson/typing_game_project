@@ -1,12 +1,14 @@
 body { 
     height: 100%; 
     margin: 0 auto; 
-    background-image: url("https://ak.picdn.net/shutterstock/videos/9101426/thumb/1.jpg");
+    background-color: lightblue;
+    /* background-image: url("https://ak.picdn.net/shutterstock/videos/9101426/thumb/1.jpg");
     background-repeat: no-repeat;
-    background-size: cover;
+    background-size: cover; */
 }
 h1 , p{
     margin: 0 auto;
+    padding-top: 15px;
     text-align: center;
 }
 
@@ -30,15 +32,17 @@ h1 , p{
     width: 100%;
     text-align: center;
     background-color: whitesmoke;
+    font-family: 'Abril Fatface', cursive;
+    color: black;
+    font-size: medium;
     /* font-family: 'Paytone One', sans-serif; */
 }
 .cursor {
-    
     background-color: grey;
 }
 
 .done {
-    color: whitesmoke;
+    color: white;
 
 }
 /* #text{
@@ -57,7 +61,7 @@ h1 , p{
     border: 1px solid green;
     justify-content: space-between;
 }
-
+/* add styling to button maybe green w/ white text */
 .start {
     height: 20px;
     width: 10%;
@@ -69,4 +73,36 @@ h1 , p{
     position: relative;
     background-color: cadetblue;
     direction: ltr;
+}
+
+button{
+    background-color: green; 
+    border: none;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+}
+
+button:hover{
+    background-color: rgb(85, 241, 85); /* Green */
+    color: white;
+}
+.level {
+    display: flex;
+    padding-top: 15px;
+    justify-content: space-between;
+    margin: auto;
+    width: 700px;
+
+}
+
+.select {
+    display: flex;
+    flex-direction: column;
+    width: 100px;
+    height: 100px;
+    background-color: grey;
+    cursor: pointer;
 }

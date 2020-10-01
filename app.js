@@ -16,6 +16,7 @@ let lyricsLength = 0;
 let width= 0;
 //frame interval
 let id =0;
+let win = false;
 
 
 
@@ -25,9 +26,9 @@ const progressBar =()=>{
      if (width == 0){
          width =1;
          const frame = () => {
-            if (width>=90){
+            if (width>=90 || win ===true){
                 clearInterval(id);
-                i = 0;
+                // i = 0;
             } else {
                 width++;
                 progress.style.width = width + "%";
@@ -42,7 +43,6 @@ const progressBar =()=>{
 
 const start = () =>{
     document.querySelector(".start").removeEventListener("click", start)
-    progressBar()
     //split string into span for each letter
     const lyrics = blackParade[paragraphIndex].split("").map((char)=> {
         const span = document.createElement("span");
@@ -67,16 +67,20 @@ const start = () =>{
                 cursorMovement.classList.add("cursor");
             }
          }
+        
         finish()
         nextLyric()
+        progressBar() 
     }
     document.addEventListener("keydown", typing)
+    
 }
 
   //need to move the cursor to the next item in the array when done
-  const nextLyric = () =>{
-    if (cursorIndex===lyricsLength-1){
+  const nextLyric = () => {
+    if (cursorIndex===lyricsLength-1 && win===false){
        screen.innerText= "";
+       console.log("clear text")
        paragraphIndex = paragraphIndex + 1
        cursorIndex = 0;
        if (paragraphIndex<blackParade.length) {    
@@ -86,19 +90,31 @@ const start = () =>{
     //    document.removeEventListener("keydown", typing())
     }
 }
+
 const finish =()=> {
     //if cursor is at the end of the paragraph and paragraph is last one in blackParade index
     if (cursorIndex===lyricsLength-1 && paragraphIndex===blackParade.length-1 && width<90){
         console.log("You rock at typing!") 
-        screen.innerHTML = "You rock at typing!"
+        let screen = document.querySelector(".lyrics")
+        console.log(screen)
+        screen.innerText = "You rock at typing!"
+        win = true
         //make a restart button that works when is says restart 
-        document.querySelector(".start").innerText = "restart"
+        document.querySelector(".start").innerText = "Restart"
+        restart()
     } else if (width>=90){
         screen.innerText = "Try again?"
+        document.querySelector(".start").innerText = "Restart"
+        restart()
     }
 }
 const restart = ()=>{
-
+    const button = document.querySelector(".start")
+    if (button.innerText==="Restart"){
+        button.addEventListener("click", ()=>{
+            location.reload()
+        })
+    }
 }
 
     //start the game using the button

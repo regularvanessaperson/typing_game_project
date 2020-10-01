@@ -14,5 +14,5 @@
 ## Stretch goals
 6. Play song in the background while playing the game
     - activates with start button
-7. Have more than one song choice
+7. Have more than one song choice or make timer faster
     - maybe an easy, medium, hard
