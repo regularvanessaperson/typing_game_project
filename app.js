@@ -19,6 +19,7 @@ let width= 0;
 //frame interval
 let id =0;
 let win = false;
+let audio = new Audio('song.mp3')
 
 
 
@@ -44,7 +45,9 @@ const progressBar =()=>{
 }
 
 const start = () =>{
+    audio.play()
     document.querySelector(".start").removeEventListener("click", start)
+    document.querySelector(".start").removeEventListener("click", reset)
     //split string into span for each letter
     const lyrics = blackParade[paragraphIndex].split("").map((char)=> {
         const span = document.createElement("span");
@@ -103,20 +106,41 @@ const finish =()=> {
         win = true
         //make a restart button that works when is says restart 
         document.querySelector(".start").innerText = "Restart"
+        audio.pause()
+        audio.currentTime=0;
         restart()
     } else if (width>=90){
         screen.innerText = "Try again?"
         document.querySelector(".start").innerText = "Restart"
+        audio.pause()
+        audio.currentTime=0;
         restart()
     }
 }
 const restart = ()=>{
     const button = document.querySelector(".start")
     if (button.innerText==="Restart"){
-        button.addEventListener("click", ()=>{
-            location.reload()
-        })
+        button.addEventListener("click", reset)
     }
+}
+
+const reset =()=>{
+    const button= document.querySelector(".start")
+    button.innerText="Play"
+    let screen = document.querySelector(".lyrics")
+    screen.innerText= ""
+    //cursor will always start at index 0
+    cursorIndex = 0;
+    //index of array that is displayed 
+    paragraphIndex = 0;
+    //the length of current paragraph of lyrics
+    lyricsLength = 0;
+    //width of progress bar
+    width= 0;
+    //frame interval
+    id =0;
+    win = false;
+    start()
 }
 
     //start the game using the button
