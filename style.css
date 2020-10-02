@@ -12,6 +12,11 @@ h1 , p{
     text-align: center;
 }
 
+#level {
+    text-align: center;
+    margin: 0 auto;
+    display: block;
+}
 
 .note{
     width: 50px;

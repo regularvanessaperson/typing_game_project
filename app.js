@@ -2,12 +2,22 @@
 
 
 //array with lyrics split up into paragraphs
-const blackParade = [
-    `Twinkle, twinkle, little star`,
+let twinkle = [`Twinkle, twinkle, little star`,
     `How I wonder what you are!`,
-    `Up above the world so high`]
+    `Up above the world so high`,
+    `Like a diamond in the sky.`,
+    `Twinkle, twinkle, little star`,
+    `How I wonder what you are!`]
+
+let timeSelect = {
+    easy: 500,
+    medium: 400,
+    hard: 300
+}
 //calling the div with class of lyrics a screen 
 let screen = document.querySelector(".lyrics")
+//selecting the song
+let level = document.querySelector("#level")
 //cursor will always start at index 0
 let cursorIndex = 0;
 //index of array that is displayed 
@@ -15,11 +25,16 @@ let paragraphIndex = 0;
 //the length of current paragraph of lyrics
 let lyricsLength = 0;
 //width of progress bar
-let width= 0;
+let width = 0;
 //frame interval
-let id =0;
+let id = 0;
 let win = false;
 let audio = new Audio('song.mp3')
+let finished = false;
+let totalCharacters = 0;
+let totalCharacterTyped = 0;
+let cursorMovement;
+let lyrics;
 
 
 
@@ -44,51 +59,62 @@ const progressBar =()=>{
      }
 }
 
+// cpm = Math.round(((characterTyped / timeElapsed) * 60)); 
+// wpm = Math.round((((characterTyped / 5) / timeElapsed) * 60)); 
+
 const start = () =>{
-    audio.play()
     document.querySelector(".start").removeEventListener("click", start)
     document.querySelector(".start").removeEventListener("click", reset)
     //split string into span for each letter
-    const lyrics = blackParade[paragraphIndex].split("").map((char)=> {
+    lyrics = twinkle[paragraphIndex].split("").map((char)=> {
         const span = document.createElement("span");
         span.innerText = char;
         screen.appendChild(span)
         return span;
     })
     lyricsLength = lyrics.length;
+    totalCharacters += lyricsLength
 
    //cursorMovement tracks the cursor going along each span 
-    let cursorMovement = lyrics[cursorIndex];
+    cursorMovement = lyrics[cursorIndex];
     cursorMovement.classList.add("cursor");
     console.log(cursorIndex)
     console.log(cursorMovement)
-    const typing = ({key})=> {
-        if(key === cursorMovement.innerText){
-            //correct key
-            cursorMovement.classList.remove("cursor");
-            cursorMovement.classList.add("done");
-            if(cursorIndex < lyricsLength-1){
-                cursorMovement = lyrics[++cursorIndex];
-                cursorMovement.classList.add("cursor");
-            }
-         }
-        
+    document.addEventListener("keydown", typing)
+}
+
+const typing = ({key})=> {
+    if (win===false){
+        totalCharacterTyped= ++totalCharacterTyped;
+    }
+    if(finished ===false){
+        audio.play()
+        }
+    if(key === cursorMovement.innerText){
+        //correct key
+        cursorMovement.classList.remove("cursor");
+        cursorMovement.classList.add("done");
+        cursorIndex += 1
+    if(cursorIndex < lyricsLength){
+        cursorMovement = lyrics[cursorIndex];
+        cursorMovement.classList.add("cursor");
+        }
+    }
         finish()
         nextLyric()
         progressBar() 
-    }
-    document.addEventListener("keydown", typing)
-    
 }
+  
 
   //need to move the cursor to the next item in the array when done
   const nextLyric = () => {
-    if (cursorIndex===lyricsLength-1 && win===false){
+    if (cursorIndex===lyricsLength && win===false){
        screen.innerText= "";
        console.log("clear text")
        paragraphIndex = paragraphIndex + 1
        cursorIndex = 0;
-       if (paragraphIndex<blackParade.length) {    
+       document.removeEventListener("keydown", typing)
+       if (paragraphIndex<twinkle.length) {    
            console.log("this is working")
         start()
         }
@@ -97,8 +123,8 @@ const start = () =>{
 }
 
 const finish =()=> {
-    //if cursor is at the end of the paragraph and paragraph is last one in blackParade index
-    if (cursorIndex===lyricsLength-1 && paragraphIndex===blackParade.length-1 && width<90){
+    //if cursor is at the end of the paragraph and paragraph is last one in twinkle index
+    if (cursorIndex===lyricsLength-1 && paragraphIndex===twinkle.length-1 && width<90){
         console.log("You rock at typing!") 
         let screen = document.querySelector(".lyrics")
         console.log(screen)
@@ -108,12 +134,18 @@ const finish =()=> {
         document.querySelector(".start").innerText = "Restart"
         audio.pause()
         audio.currentTime=0;
+        finished=true;
+        console.log("charachters typed"+ totalCharacters)
+        console.log("total characters typed with errors"+ totalCharacterTyped)
+        document.removeEventListener("keydown", typing)
         restart()
     } else if (width>=90){
+        finished=true;
         screen.innerText = "Try again?"
         document.querySelector(".start").innerText = "Restart"
         audio.pause()
         audio.currentTime=0;
+        document.removeEventListener("keydown", typing);
         restart()
     }
 }
@@ -140,6 +172,7 @@ const reset =()=>{
     //frame interval
     id =0;
     win = false;
+    finished=false;
     start()
 }
 
