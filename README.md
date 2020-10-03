@@ -1,4 +1,6 @@
-# typing_game_project
+# typing_game_project: Typing Kareoke
+I really had a song stuck in my head (The Black Parade) when I was trying to think of a simple game I could code within the given time and decided a music themed typing game would be fun. I started out by studying just single word typing games and expanding on the idea by inserting the lyrics of a song. 
+
 ## Game making basic goals
 0. Basic layout of the game planned (x)
     - want it to look kind of like a youtube lyric video 
@@ -17,6 +19,8 @@
 7. Have more than one song choice or make timer faster
     - maybe an easy, medium, hard
 
-### Issues I haven't solved
+### Issues I encountered
 - When making spans out of each character the cursor skips over them
     and it makes the game look a bit broken while playing
+    - was caused by using the refresh button but it left all of the typing{key} function's event listeners from the previous game on so it would get worse with each refresh. The the solution was to separate the typing function so that the event listener could be added and removed
+

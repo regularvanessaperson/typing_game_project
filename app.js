@@ -1,6 +1,3 @@
-
-
-
 //array with lyrics split up into paragraphs
 let twinkle = [`Twinkle, twinkle, little star`,
     `How I wonder what you are!`,
@@ -37,9 +34,13 @@ let cursorMovement;
 let lyrics;
 
 
+const wordsPerMin =()=> {
+    cpm = Math.round(((characterTyped / timeElapsed) * 60)); 
+    wpm = Math.round((((characterTyped / 5) / timeElapsed) * 60)); 
+}
 
 //it will display on screen and be full when done
-const progressBar =()=>{
+const progressBar =()=> {
     const progress = document.querySelector(".timer");
      if (width == 0){
          width =1;
@@ -54,15 +55,14 @@ const progressBar =()=>{
             }
          }
          //if I wanted different length it would go in the id
-         id = setInterval(frame,190);
+         id = setInterval(frame,330);
          finish()
      }
 }
 
-// cpm = Math.round(((characterTyped / timeElapsed) * 60)); 
-// wpm = Math.round((((characterTyped / 5) / timeElapsed) * 60)); 
 
-const start = () =>{
+
+const start = () => {
     document.querySelector(".start").removeEventListener("click", start)
     document.querySelector(".start").removeEventListener("click", reset)
     //split string into span for each letter
@@ -90,6 +90,7 @@ const typing = ({key})=> {
     if(finished ===false){
         audio.play()
         }
+    progressBar() 
     if(key === cursorMovement.innerText){
         //correct key
         cursorMovement.classList.remove("cursor");
@@ -102,7 +103,6 @@ const typing = ({key})=> {
     }
         finish()
         nextLyric()
-        progressBar() 
 }
   
 
@@ -149,14 +149,14 @@ const finish =()=> {
         restart()
     }
 }
-const restart = ()=>{
+const restart = ()=> {
     const button = document.querySelector(".start")
     if (button.innerText==="Restart"){
         button.addEventListener("click", reset)
     }
 }
 
-const reset =()=>{
+const reset =()=> {
     const button= document.querySelector(".start")
     button.innerText="Play"
     let screen = document.querySelector(".lyrics")
