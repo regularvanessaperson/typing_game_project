@@ -2,14 +2,18 @@ body {
     height: 100%; 
     margin: 0 auto; 
     background-color: lightblue;
-    /* background-image: url("https://i.pinimg.com/564x/1a/ea/0c/1aea0c4208e504b5e1104b939499fe1a.jpg");
+    /* background-image: url("https://cdn.imgbin.com/17/2/18/imgbin-orange-star-background-5uaabMYdmkvNExD9cpWiE1iNP.jpg");
     background-repeat: no-repeat;
-    background-size: cover; */
+    background-position: center; */
+}
+h1{
+    font-size: 45px;
 }
 h1 , p{
     margin: 0 auto;
     padding-top: 15px;
     text-align: center;
+    font-family: 'Acme', sans-serif;
 }
 
 #level {
@@ -27,21 +31,30 @@ h1 , p{
 .container {
     display: flex;
     margin: auto;
-    border: 1px solid red;
-    width: 700px;
+    /* border: px solid blue; */
+    width: 60%;
     max-height: max-content;
 }
 
 .lyrics {
-    height: 250px;
+    height: 300px;
     width: 100%;
     text-align: center;
+    margin: auto;
     background-color: whitesmoke;
     font-family: 'Abril Fatface', cursive;
     color: black;
     font-size: medium;
     /* font-family: 'Paytone One', sans-serif; */
 }
+.text {
+    text-align: center;
+    align-items: center;
+    margin: auto;
+    font-size: 30px;
+    font-family: 'Acme', sans-serif;
+}
+
 .cursor {
     background-color: grey;
 }
@@ -61,14 +74,14 @@ h1 , p{
     display: flex;
     flex-direction: row;
     margin: 0 auto;
-    width: 700px;
+    width: 60%;
     position: relative;
     border: 1px solid green;
     justify-content: space-between;
 }
 /* add styling to button maybe green w/ white text */
 .start {
-    height: 20px;
+    height: 25px;
     width: 10%;
     position: relative;
 }
@@ -80,7 +93,7 @@ h1 , p{
     direction: ltr;
 }
 
-button{
+button {
     background-color: green; 
     border: none;
     color: white;
@@ -99,8 +112,7 @@ button:hover{
     padding-top: 15px;
     justify-content: space-between;
     margin: auto;
-    width: 700px;
-
+    width: 60%;
 }
 
 .select {

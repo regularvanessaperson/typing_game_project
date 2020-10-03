@@ -6,11 +6,11 @@ let twinkle = [`Twinkle, twinkle, little star`,
     `Twinkle, twinkle, little star`,
     `How I wonder what you are!`]
 
-let timeSelect = {
-    easy: 500,
-    medium: 400,
-    hard: 300
-}
+// let timeSelect = {
+//     easy: 500,
+//     medium: 400,
+//     hard: 300
+// }
 //calling the div with class of lyrics a screen 
 let screen = document.querySelector(".lyrics")
 //selecting the song
@@ -26,18 +26,16 @@ let width = 0;
 //frame interval
 let id = 0;
 let win = false;
-let audio = new Audio('song.mp3')
+let audio = new Audio('song.mp3');
 let finished = false;
+//total typed correctly
 let totalCharacters = 0;
+//all keys down including incorrect characters
 let totalCharacterTyped = 0;
 let cursorMovement;
 let lyrics;
+let startDate;
 
-
-const wordsPerMin =()=> {
-    cpm = Math.round(((characterTyped / timeElapsed) * 60)); 
-    wpm = Math.round((((characterTyped / 5) / timeElapsed) * 60)); 
-}
 
 //it will display on screen and be full when done
 const progressBar =()=> {
@@ -56,6 +54,7 @@ const progressBar =()=> {
          }
          //if I wanted different length it would go in the id
          id = setInterval(frame,330);
+         console.log("what is" + id)
          finish()
      }
 }
@@ -63,11 +62,15 @@ const progressBar =()=> {
 
 
 const start = () => {
+    if (startDate === undefined){
+        startDate = new Date();
+    }
     document.querySelector(".start").removeEventListener("click", start)
     document.querySelector(".start").removeEventListener("click", reset)
     //split string into span for each letter
     lyrics = twinkle[paragraphIndex].split("").map((char)=> {
         const span = document.createElement("span");
+        span.classList.add("text")
         span.innerText = char;
         screen.appendChild(span)
         return span;
@@ -106,16 +109,16 @@ const typing = ({key})=> {
 }
   
 
-  //need to move the cursor to the next item in the array when done
-  const nextLyric = () => {
+//need to move the cursor to the next item in the array when done
+const nextLyric = () => {
     if (cursorIndex===lyricsLength && win===false){
        screen.innerText= "";
        console.log("clear text")
        paragraphIndex = paragraphIndex + 1
        cursorIndex = 0;
        document.removeEventListener("keydown", typing)
-       if (paragraphIndex<twinkle.length) {    
-           console.log("this is working")
+    if (paragraphIndex<twinkle.length) {    
+        console.log("this is working")
         start()
         }
     //    document.removeEventListener("keydown", typing())
@@ -125,10 +128,13 @@ const typing = ({key})=> {
 const finish =()=> {
     //if cursor is at the end of the paragraph and paragraph is last one in twinkle index
     if (cursorIndex===lyricsLength-1 && paragraphIndex===twinkle.length-1 && width<90){
+        let endDate = new Date();
+        let seconds = (endDate.getTime() - startDate.getTime())/1000;
+        let wpm = Math.round(((totalCharacterTyped/5)/seconds)*60);
         console.log("You rock at typing!") 
         let screen = document.querySelector(".lyrics")
         console.log(screen)
-        screen.innerText = "You rock at typing!"
+        screen.innerText = "You rock at typing! " +wpm+ "WPM"
         win = true
         //make a restart button that works when is says restart 
         document.querySelector(".start").innerText = "Restart"
@@ -137,11 +143,16 @@ const finish =()=> {
         finished=true;
         console.log("charachters typed"+ totalCharacters)
         console.log("total characters typed with errors"+ totalCharacterTyped)
+
         document.removeEventListener("keydown", typing)
         restart()
     } else if (width>=90){
+        let endDate = new Date();
+        let seconds = (endDate.getTime() - startDate.getTime())/1000;
+        let wpm = Math.round(((totalCharacterTyped/5)/seconds)*60);
+        console.log(wpm)
         finished=true;
-        screen.innerText = "Try again?"
+        screen.innerText = "Try again? " +wpm+ "WPM"
         document.querySelector(".start").innerText = "Restart"
         audio.pause()
         audio.currentTime=0;
@@ -155,6 +166,11 @@ const restart = ()=> {
         button.addEventListener("click", reset)
     }
 }
+
+// const wordsPerMin =()=> {
+//     wpm = Math.round((((totalCharacterTyped/5)timeElapsed ) * 60)); 
+//     return wpm
+// }
 
 const reset =()=> {
     const button= document.querySelector(".start")
@@ -179,5 +195,4 @@ const reset =()=> {
     //start the game using the button
 document.addEventListener("DOMContentLoaded",()=>{
     document.querySelector(".start").addEventListener("click", start)
-    
 })
