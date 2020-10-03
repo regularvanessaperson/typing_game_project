@@ -7,13 +7,14 @@ I really had a song stuck in my head (The Black Parade) when I was trying to thi
 1. Get text/typing to work (x)
 2. Get each string to show after previous one is typed (x)
 3. Get progress bar to show (x)
-    - stop the game if player is not done typing
-    - stop progress bar if player finishes before it is done
-        -display a winning message (not an alert)
-4. Get play button to start the game and progress bar at the same time
-5. Restart button to restart at any time
+    - stop the game if player is not done typing (x)
+    - stop progress bar if player finishes before it is done(x)
+        -display a winning message (not an alert) (x)
+4. Get play button to start the game and progress bar at the same time (x)
+
 
 ## Stretch goals
+5. Restart button to restart at any time
 6. Play song in the background while playing the game
     - activates with start button
 7. Have more than one song choice or make timer faster
