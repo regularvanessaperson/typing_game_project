@@ -6,11 +6,7 @@ let twinkle = [`Twinkle, twinkle, little star`,
     `Twinkle, twinkle, little star`,
     `How I wonder what you are!`]
 
-// let timeSelect = {
-//     easy: 500,
-//     medium: 400,
-//     hard: 300
-// }
+
 //calling the div with class of lyrics a screen 
 let screen = document.querySelector(".lyrics")
 //selecting the song
@@ -45,16 +41,13 @@ const progressBar =()=> {
          const frame = () => {
             if (width>=90 || win ===true){
                 clearInterval(id);
-                // i = 0;
             } else {
                 width++;
                 progress.style.width = width + "%";
-                // progress.innerText = width + "%";
             }
          }
          //if I wanted different length it would go in the id
          id = setInterval(frame,330);
-         console.log("what is" + id)
          finish()
      }
 }
@@ -81,8 +74,6 @@ const start = () => {
    //cursorMovement tracks the cursor going along each span 
     cursorMovement = lyrics[cursorIndex];
     cursorMovement.classList.add("cursor");
-    console.log(cursorIndex)
-    console.log(cursorMovement)
     document.addEventListener("keydown", typing)
 }
 
@@ -113,15 +104,12 @@ const typing = ({key})=> {
 const nextLyric = () => {
     if (cursorIndex===lyricsLength && win===false){
        screen.innerText= "";
-       console.log("clear text")
        paragraphIndex = paragraphIndex + 1
        cursorIndex = 0;
        document.removeEventListener("keydown", typing)
     if (paragraphIndex<twinkle.length) {    
-        console.log("this is working")
         start()
         }
-    //    document.removeEventListener("keydown", typing())
     }
 }
 
@@ -131,9 +119,7 @@ const finish =()=> {
         let endDate = new Date();
         let seconds = (endDate.getTime() - startDate.getTime())/1000;
         let wpm = Math.round(((totalCharacterTyped/5)/seconds)*60);
-        console.log("You rock at typing!") 
         let screen = document.querySelector(".lyrics")
-        console.log(screen)
         screen.innerText = "You rock at typing! " +wpm+ "WPM"
         win = true
         //make a restart button that works when is says restart 
@@ -141,9 +127,6 @@ const finish =()=> {
         audio.pause()
         audio.currentTime=0;
         finished=true;
-        console.log("charachters typed"+ totalCharacters)
-        console.log("total characters typed with errors"+ totalCharacterTyped)
-
         document.removeEventListener("keydown", typing)
         restart()
     } else if (width>=90){
@@ -167,10 +150,6 @@ const restart = ()=> {
     }
 }
 
-// const wordsPerMin =()=> {
-//     wpm = Math.round((((totalCharacterTyped/5)timeElapsed ) * 60)); 
-//     return wpm
-// }
 
 const reset =()=> {
     const button= document.querySelector(".start")

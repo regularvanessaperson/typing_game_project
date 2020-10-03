@@ -32,7 +32,6 @@ h1 , p{
 .container {
     display: flex;
     margin: auto;
-    /* border: px solid blue; */
     width: 60%;
     max-height: max-content;
 }
@@ -99,7 +98,7 @@ button {
 }
 
 button:hover{
-    background-color: rgb(85, 241, 85); /* Green */
+    background-color: rgb(85, 241, 85); 
     color: white;
 }
 .level {
