@@ -18,7 +18,7 @@ let paragraphIndex = 0;
 //the length of current paragraph of lyrics
 let lyricsLength = 0;
 //width of progress bar
-let width = 0;
+let width = 90;
 //frame interval
 let id = 0;
 let win = false;
@@ -36,13 +36,13 @@ let startDate;
 //it will display on screen and be full when done
 const progressBar =()=> {
     const progress = document.querySelector(".timer");
-     if (width == 0){
-         width =1;
+     if (width == 90){
+         width -= 1;
          const frame = () => {
-            if (width>=90 || win ===true){
+            if (width === 0 || win ===true){
                 clearInterval(id);
             } else {
-                width++;
+                width--;
                 progress.style.width = width + "%";
             }
          }
@@ -115,7 +115,7 @@ const nextLyric = () => {
 
 const finish =()=> {
     //if cursor is at the end of the paragraph and paragraph is last one in twinkle index
-    if (cursorIndex===lyricsLength-1 && paragraphIndex===twinkle.length-1 && width<90){
+    if (cursorIndex===lyricsLength-1 && paragraphIndex===twinkle.length-1 && width>0){
         let endDate = new Date();
         let seconds = (endDate.getTime() - startDate.getTime())/1000;
         let wpm = Math.round(((totalCharacterTyped/5)/seconds)*60);
@@ -129,7 +129,7 @@ const finish =()=> {
         finished=true;
         document.removeEventListener("keydown", typing)
         restart()
-    } else if (width>=90){
+    } else if (width === 0){
         let endDate = new Date();
         let seconds = (endDate.getTime() - startDate.getTime())/1000;
         let wpm = Math.round(((totalCharacterTyped/5)/seconds)*60);
@@ -163,7 +163,7 @@ const reset =()=> {
     //the length of current paragraph of lyrics
     lyricsLength = 0;
     //width of progress bar
-    width= 0;
+    width= 90;
     //frame interval
     id =0;
     win = false;
