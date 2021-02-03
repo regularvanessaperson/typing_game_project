@@ -2,19 +2,23 @@ body {
     height: 100%; 
     margin: 0 auto; 
     background-color: lightblue;
-    background-image: url("https://i.pinimg.com/originals/43/ad/31/43ad316fb8212807903fb5616d35f8b3.jpg");
-    background-repeat: no-repeat;
-    background-position: center;
+    background-image: url(stars.png);
+    background-size: 100%;
+    background-position: cover;
+    background-repeat: repeat-y;
 }
 h1{
     font-size: 45px;
+    text-shadow: 0 0 5px  white;
 }
 
 h1 , p{
     margin: 0 auto;
-    padding-top: 15px;
+    padding-top: 5px;
+    padding-bottom: 10px;
     text-align: center;
     font-family: 'Acme', sans-serif;
+    text-shadow: 0 0 3px #889fc0, 0 0 5px #5c5c68;
 }
 
 #level {
