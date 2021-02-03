@@ -1,5 +1,12 @@
 # typing_game_project: Typing Kareoke
-I really had a song stuck in my head (The Black Parade) when I was trying to think of a simple game I could code within the given time and decided a music themed typing game would be fun. I started out by studying just single word typing games and expanding on the idea by inserting the lyrics of a song. 
+I really had a song stuck in my head (The Black Parade) when I was trying to think of a simple game I could code within the given time and decided a music themed typing game would be fun. I started out by studying just single word typing games and expanding on the idea by inserting the lyrics of a song. The goal is to finish typing the lyrics before the progress bar is filled. 
+
+Link to game: https://regularvanessaperson.github.io/typing_game_project/
+
+### Technologies used
+- HTML
+- CSS
+- JavaScript
 
 ## Game making basic goals
 0. Basic layout of the game planned 
