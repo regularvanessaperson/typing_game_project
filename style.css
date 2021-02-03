@@ -84,7 +84,7 @@ h1 , p{
     width: 90%;
     position: relative;
     background-color: cadetblue;
-    direction: ltr;
+    direction: rtl;
 }
 
 button {
